@@ -35,7 +35,6 @@ public class InstructorController {
         instructorService.addInstructor(model);
         map.put("res", "ok");
         return map;
-
     }
 
 }
