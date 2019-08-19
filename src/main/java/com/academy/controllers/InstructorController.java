@@ -29,7 +29,7 @@ public class InstructorController {
         InstructorModel model = new InstructorModel();
         model.setFirstName(instructor.getFirstName());
         model.setLastName(instructor.getLastName());
-        model.setRate(instructor.getRate());
+        model.setRating(instructor.getRating());
         model.setAge(instructor.getAge());
         model.setGender(instructor.getGender());
         instructorService.addInstructor(model);

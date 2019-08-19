@@ -10,7 +10,7 @@ public class InstructorDTO {
     private String lastName;
     private int age;
     private GenderEnum gender;
-    private Double rate;
+    private Double rating;
 
     public String getFirstName() {
         return firstName;
@@ -44,11 +44,11 @@ public class InstructorDTO {
         this.gender = gender;
     }
 
-    public Double getRate() {
-        return rate;
+    public Double getRating() {
+        return rating;
     }
 
-    public void setRate(Double rate) {
-        this.rate = rate;
+    public void setRating(Double rating) {
+        this.rating = rating;
     }
 }

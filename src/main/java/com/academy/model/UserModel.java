@@ -17,7 +17,11 @@ public class UserModel extends AbstractAuditingModel{
     private int age;
 
     @Column(name = "gender")
+    @Enumerated(EnumType.STRING)
     private GenderEnum gender;
+
+    @Column(name = "email")
+    private String email;
 
     public String getFirstName() {
         return firstName;
@@ -51,13 +55,22 @@ public class UserModel extends AbstractAuditingModel{
         this.gender = gender;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
-        return "InstructorModel{" +
+        return "UserModel{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", gender=" + gender +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

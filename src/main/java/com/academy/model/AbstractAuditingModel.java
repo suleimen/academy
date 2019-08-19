@@ -1,5 +1,6 @@
 package com.academy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -15,10 +16,12 @@ public abstract class AbstractAuditingModel extends AbstractModel {
 
     @CreatedDate
     @Column(name = "created_date", nullable = false)
+    @JsonIgnore
     private LocalDateTime createdDate;
 
     @LastModifiedDate
     @Column(name = "last_modified_date", nullable = false)
+    @JsonIgnore
     private LocalDateTime lastModifiedDate;
 
     public LocalDateTime getCreatedDate() {

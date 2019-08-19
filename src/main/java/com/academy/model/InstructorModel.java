@@ -10,14 +10,14 @@ import javax.persistence.Table;
 @SequenceGenerator(name = "id_gen", sequenceName = "instructors_seq", initialValue = 1000, allocationSize = 1)
 public class InstructorModel extends UserModel {
 
-    @Column(name = "rate")
-    private Double rate;
+    @Column(name = "rating")
+    private Double rating;
 
-    public Double getRate() {
-        return rate;
+    public Double getRating() {
+        return rating;
     }
 
-    public void setRate(Double rate) {
-        this.rate = rate;
+    public void setRating(Double rating) {
+        this.rating = rating;
     }
 }
