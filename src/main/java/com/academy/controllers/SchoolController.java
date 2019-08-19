@@ -1,12 +1,11 @@
 package com.academy.controllers;
 
-import com.academy.dto.InstructorDTO;
 import com.academy.dto.SchoolDTO;
-import com.academy.model.InstructorModel;
 import com.academy.model.LocationModel;
 import com.academy.model.SchoolModel;
 import com.academy.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -25,7 +24,7 @@ public class SchoolController {
         return schoolService.getAllSchools();
     }
 
-    @PostMapping(value = "/add", consumes = "application/json")
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, String> addSchool(@RequestBody SchoolDTO school){
 
         Map<String, String> map = new HashMap<>();

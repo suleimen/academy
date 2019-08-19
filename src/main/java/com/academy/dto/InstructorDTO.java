@@ -2,8 +2,6 @@ package com.academy.dto;
 
 import com.academy.enums.GenderEnum;
 
-import javax.persistence.Column;
-
 public class InstructorDTO {
 
     private String firstName;

@@ -1,6 +1,7 @@
 package com.academy.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "schools")
@@ -25,6 +26,12 @@ public class SchoolModel extends AbstractAuditingModel {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     private LocationModel location;
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "school_instructor",
+                joinColumns = @JoinColumn(name = "school_id", referencedColumnName = "id"),
+                inverseJoinColumns = @JoinColumn(name = "instr_id", referencedColumnName = "id"))
+    private List<InstructorModel> instructors;
 
     public String getName() {
         return name;
@@ -72,5 +79,13 @@ public class SchoolModel extends AbstractAuditingModel {
 
     public void setLocation(LocationModel location) {
         this.location = location;
+    }
+
+    public List<InstructorModel> getInstructors() {
+        return instructors;
+    }
+
+    public void setInstructors(List<InstructorModel> instructors) {
+        this.instructors = instructors;
     }
 }
