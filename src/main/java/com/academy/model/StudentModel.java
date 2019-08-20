@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "students")
-@SequenceGenerator(name = "id_gen", sequenceName = "student_seq", initialValue = 1000, allocationSize = 1)
+@SequenceGenerator(name = "student_gen", sequenceName = "student_seq", initialValue = 1000, allocationSize = 1)
 public class StudentModel extends UserModel {
 
     @Column(name = "phone")

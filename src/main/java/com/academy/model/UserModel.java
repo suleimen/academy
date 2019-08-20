@@ -3,6 +3,7 @@ package com.academy.model;
 import com.academy.enums.GenderEnum;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @MappedSuperclass
 public class UserModel extends AbstractAuditingModel{
@@ -22,6 +23,9 @@ public class UserModel extends AbstractAuditingModel{
 
     @Column(name = "email")
     private String email;
+
+    @Column(name ="date_of_birth")
+    private LocalDate dateOfBirth;
 
     public String getFirstName() {
         return firstName;
@@ -61,6 +65,14 @@ public class UserModel extends AbstractAuditingModel{
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     @Override

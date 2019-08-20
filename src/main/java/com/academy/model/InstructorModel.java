@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "instructors")
-@SequenceGenerator(name = "id_gen", sequenceName = "instructors_seq", initialValue = 1000, allocationSize = 1)
+@SequenceGenerator(name = "instructor_gen", sequenceName = "instructors_seq", initialValue = 1000, allocationSize = 1)
 public class InstructorModel extends UserModel {
 
     @Column(name = "rating")

@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "locations")
-@SequenceGenerator(name = "id_gen", sequenceName = "location_seq", initialValue = 1000, allocationSize = 1)
+@SequenceGenerator(name = "location_gen", sequenceName = "location_seq", initialValue = 1000, allocationSize = 1)
 public class LocationModel extends AbstractAuditingModel {
 
     @Column(name = "latitude")

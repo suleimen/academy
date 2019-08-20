@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "schools")
-@SequenceGenerator(name = "id_gen", sequenceName = "school_seq", initialValue = 1000, allocationSize = 1)
+@SequenceGenerator(name = "school_gen", sequenceName = "school_seq", initialValue = 1000, allocationSize = 1)
 public class SchoolModel extends AbstractAuditingModel {
 
     @Column(name = "name")
