@@ -1,17 +1,21 @@
 package com.academy.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "students")
-@SequenceGenerator(name = "student_gen", sequenceName = "student_seq", initialValue = 1000, allocationSize = 1)
+@SequenceGenerator(name = "id_gen", sequenceName = "student_seq", initialValue = 1000, allocationSize = 1)
 public class StudentModel extends UserModel {
 
     @Column(name = "phone")
     private String phone;
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "school_id")
+    private SchoolModel school;
 
     public String getPhone() {
         return phone;
@@ -19,5 +23,13 @@ public class StudentModel extends UserModel {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public SchoolModel getSchool() {
+        return school;
+    }
+
+    public void setSchool(SchoolModel school) {
+        this.school = school;
     }
 }

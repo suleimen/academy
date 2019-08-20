@@ -1,7 +1,7 @@
 package com.academy.controllers;
 
 import com.academy.dto.SchoolDTO;
-import com.academy.model.LocationModel;
+import com.academy.model.AddressModel;
 import com.academy.model.SchoolModel;
 import com.academy.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,19 +26,8 @@ public class SchoolController {
 
     @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, String> addSchool(@RequestBody SchoolDTO school){
-
         Map<String, String> map = new HashMap<>();
-        SchoolModel schoolModel = new SchoolModel();
-        schoolModel.setRating(school.getRating());
-        schoolModel.setDescription(school.getDescription());
-        schoolModel.setEmail(school.getEmail());
-        schoolModel.setName(school.getName());
-        schoolModel.setPhoneNumber(school.getPhoneNumber());
-        LocationModel locationModel = new LocationModel();
-        locationModel.setLatitude(school.getLatitude());
-        locationModel.setLongitude(school.getLongitude());
-        schoolModel.setLocation(locationModel);
-        schoolService.addSchool(schoolModel);
+        schoolService.addSchool(school);
         map.put("res", "ok");
         return map;
     }

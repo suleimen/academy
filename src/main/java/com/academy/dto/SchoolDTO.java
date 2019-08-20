@@ -1,13 +1,15 @@
 package com.academy.dto;
 
+import java.util.Set;
+
 public class SchoolDTO {
     private String name;
     private String description;
     private Double rating;
-    private String phoneNumber;
+    private Set<String> phoneNumbers;
     private String email;
-    private Double latitude;
-    private Double longitude;
+    private Set<AddressDTO> addresses;
+    private Set<Long> languages;
 
     public String getName() {
         return name;
@@ -33,14 +35,6 @@ public class SchoolDTO {
         this.rating = rating;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -49,19 +43,27 @@ public class SchoolDTO {
         this.email = email;
     }
 
-    public Double getLatitude() {
-        return latitude;
+    public Set<String> getPhoneNumbers() {
+        return phoneNumbers;
     }
 
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
+    public void setPhoneNumbers(Set<String> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
     }
 
-    public Double getLongitude() {
-        return longitude;
+    public Set<AddressDTO> getAddresses() {
+        return addresses;
     }
 
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
+    public void setAddresses(Set<AddressDTO> addresses) {
+        this.addresses = addresses;
+    }
+
+    public Set<Long> getLanguages() {
+        return languages;
+    }
+
+    public void setLanguages(Set<Long> languages) {
+        this.languages = languages;
     }
 }
