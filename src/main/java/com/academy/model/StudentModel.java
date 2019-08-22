@@ -3,6 +3,7 @@ package com.academy.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "students")
@@ -12,10 +13,8 @@ public class StudentModel extends UserModel {
     @Column(name = "phone")
     private String phone;
 
-    @JsonIgnore
-    @ManyToOne
-    @JoinColumn(name = "school_id")
-    private SchoolModel school;
+    @ManyToMany(mappedBy = "students")
+    private Set<SchoolModel> schools;
 
     public String getPhone() {
         return phone;
@@ -25,11 +24,11 @@ public class StudentModel extends UserModel {
         this.phone = phone;
     }
 
-    public SchoolModel getSchool() {
-        return school;
+    public Set<SchoolModel> getSchools() {
+        return schools;
     }
 
-    public void setSchool(SchoolModel school) {
-        this.school = school;
+    public void setSchools(Set<SchoolModel> schools) {
+        this.schools = schools;
     }
 }

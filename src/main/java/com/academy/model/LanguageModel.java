@@ -1,5 +1,7 @@
 package com.academy.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,7 @@ public class LanguageModel extends AbstractModel {
     private String name_en;
 
     @ManyToMany(mappedBy = "languages")
+    @JsonIgnore
     private List<SchoolModel> schools;
 
     public String getCode() {

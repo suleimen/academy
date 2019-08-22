@@ -1,9 +1,7 @@
 package com.academy.model;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -29,24 +27,25 @@ public class SchoolModel extends AbstractAuditingModel {
     private String email;
 
     @OneToMany(mappedBy = "school")
-    private List<AddressModel> addresses;
+    private Set<AddressModel> addresses;
 
     @ManyToMany
     @JoinTable(name = "school_instructor",
                 joinColumns = @JoinColumn(name = "school_id", referencedColumnName = "id"),
                 inverseJoinColumns = @JoinColumn(name = "instr_id", referencedColumnName = "id"))
-    private List<InstructorModel> instructors;
+    private Set<InstructorModel> instructors;
 
-    @OneToMany(mappedBy = "school")
-    private List<StudentModel> students;
+    @ManyToMany
+    @JoinTable(name = "school_student",
+            joinColumns = @JoinColumn(name = "school_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"))
+    private Set<StudentModel> students;
 
     @ManyToMany
     @JoinTable(name = "school_language",
             joinColumns = @JoinColumn(name = "school_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "lang_id", referencedColumnName = "id"))
-    private List<LanguageModel> languages;
-
-
+    private Set<LanguageModel> languages;
 
     public String getName() {
         return name;
@@ -88,42 +87,42 @@ public class SchoolModel extends AbstractAuditingModel {
         this.email = email;
     }
 
-    public List<AddressModel> getAddresses() {
+    public Set<AddressModel> getAddresses() {
         return addresses;
     }
 
-    public void setAddresses(List<AddressModel> addresses) {
+    public void setAddresses(Set<AddressModel> addresses) {
         this.addresses = addresses;
     }
 
-    public List<InstructorModel> getInstructors() {
+    public Set<InstructorModel> getInstructors() {
         return instructors;
     }
 
-    public void setInstructors(List<InstructorModel> instructors) {
+    public void setInstructors(Set<InstructorModel> instructors) {
         this.instructors = instructors;
     }
 
-    public List<StudentModel> getStudents() {
+    public Set<StudentModel> getStudents() {
         return students;
     }
 
-    public void setStudents(List<StudentModel> students) {
+    public void setStudents(Set<StudentModel> students) {
         this.students = students;
     }
 
-    public List<LanguageModel> getLanguages() {
+    public Set<LanguageModel> getLanguages() {
         return languages;
     }
 
-    public void setLanguages(List<LanguageModel> languages) {
+    public void setLanguages(Set<LanguageModel> languages) {
         this.languages = languages;
     }
 
     public void addLanguage(LanguageModel language) {
         if (language != null) {
             if (languages == null)
-                languages = new ArrayList<>();
+                languages = new HashSet<>();
             if (languages.contains(language))
                 return;
             languages.add(language);

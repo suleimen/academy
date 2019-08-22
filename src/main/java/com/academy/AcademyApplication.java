@@ -1,5 +1,7 @@
 package com.academy;
 
+import com.fasterxml.jackson.databind.Module;
+import com.fasterxml.jackson.datatype.hibernate5.Hibernate5Module;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +13,11 @@ import java.util.Optional;
 @SpringBootApplication
 @EnableJpaAuditing(auditorAwareRef = "auditorProvider")
 public class AcademyApplication {
+
+	@Bean
+	public Module datatypeHibernateModule() {
+		return new Hibernate5Module();
+	}
 
 	@Bean
 	public AuditorAware<String> auditorProvider() {

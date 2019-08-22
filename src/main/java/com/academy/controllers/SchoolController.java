@@ -24,6 +24,11 @@ public class SchoolController {
         return schoolService.getAllSchools();
     }
 
+    @GetMapping(value = "/find/{id}")
+    public SchoolModel getSchoolById(@PathVariable(value = "id")Long id){
+        return schoolService.getSchoolById(id).get();
+    }
+
     @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     public Map<String, String> addSchool(@RequestBody SchoolDTO school){
         Map<String, String> map = new HashMap<>();

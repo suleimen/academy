@@ -12,12 +12,11 @@ import com.academy.repository.SchoolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import javax.transaction.Transactional;
+import java.util.*;
 
 @Service
+@Transactional
 public class SchoolService {
 
     @Autowired
@@ -34,6 +33,10 @@ public class SchoolService {
 
     public List<SchoolModel> getAllSchools(){
         return schoolRepository.findAll();
+    }
+
+    public Optional<SchoolModel> getSchoolById(Long id){
+        return schoolRepository.findById(id);
     }
 
     public void addSchool(SchoolDTO schoolDto){
@@ -56,7 +59,7 @@ public class SchoolService {
     }
 
     private SchoolModel saveSchool(SchoolDTO school){
-        List<LanguageModel> langs = new ArrayList<>();
+        Set<LanguageModel> langs = new HashSet<>();
         SchoolModel schoolModel = new SchoolModel();
         schoolModel.setRating(school.getRating());
         schoolModel.setDescription(school.getDescription());
