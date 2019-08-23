@@ -1,0 +1,12 @@
+INSERT INTO public.study_type(id, code, name) VALUES (nextval('study_seq'), 'speaking', 'Разговорный');
+INSERT INTO public.study_type(id, code, name) VALUES (nextval('study_seq'), 'individual', 'Индивидульно');
+INSERT INTO public.study_type(id, code, name) VALUES (nextval('study_seq'), 'group', 'Группа');
+INSERT INTO public.study_type(id, code, name) VALUES (nextval('study_seq'), 'mini-group', 'Мини-группа');
+INSERT INTO public.study_type(id, code, name) VALUES (nextval('study_seq'), 'adults', 'Для взрослых');
+INSERT INTO public.study_type(id, code, name) VALUES (nextval('study_seq'), 'kids', 'Для детей');
+INSERT INTO public.study_type(id, code, name) VALUES (nextval('study_seq'), 'highSchool', 'Для школьников');
+INSERT INTO public.study_type(id, code, name) VALUES (nextval('study_seq'), 'business', 'Для бизнеса');
+INSERT INTO public.study_type(id, code, name) VALUES (nextval('study_seq'), 'corporate', 'Корпоративные курсы');
+INSERT INTO public.study_type(id, code, name) VALUES (nextval('study_seq'), 'englishClub', 'English club');
+INSERT INTO public.study_type(id, code, name) VALUES (nextval('study_seq'), 'ielts', 'IELTS');
+INSERT INTO public.study_type(id, code, name) VALUES (nextval('study_seq'), 'toefl', 'TOEFL');

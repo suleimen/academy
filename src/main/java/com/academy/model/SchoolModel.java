@@ -18,16 +18,11 @@ public class SchoolModel extends AbstractAuditingModel {
     @Column(name = "rating")
     private Double rating;
 
-    @ElementCollection
-    @CollectionTable(name = "school_phone_numbers", joinColumns = @JoinColumn(name = "school_id"))
-    @Column(name = "phone_number")
-    private Set<String> phoneNumbers = new HashSet<>();
-
     @Column(name = "email")
     private String email;
 
-    @OneToMany(mappedBy = "school")
-    private Set<AddressModel> addresses;
+    @OneToMany(mappedBy = "school", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<ContactModel> contacts;
 
     @ManyToMany
     @JoinTable(name = "school_instructor",
@@ -46,6 +41,12 @@ public class SchoolModel extends AbstractAuditingModel {
             joinColumns = @JoinColumn(name = "school_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "lang_id", referencedColumnName = "id"))
     private Set<LanguageModel> languages;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "school_type",
+            joinColumns = @JoinColumn(name = "school_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "study_type_id", referencedColumnName = "id"))
+    private Set<StudyTypeModel> studyTypes;
 
     public String getName() {
         return name;
@@ -71,14 +72,6 @@ public class SchoolModel extends AbstractAuditingModel {
         this.rating = rating;
     }
 
-    public Set<String> getPhoneNumbers() {
-        return phoneNumbers;
-    }
-
-    public void setPhoneNumbers(Set<String> phoneNumbers) {
-        this.phoneNumbers = phoneNumbers;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -87,12 +80,12 @@ public class SchoolModel extends AbstractAuditingModel {
         this.email = email;
     }
 
-    public Set<AddressModel> getAddresses() {
-        return addresses;
+    public Set<ContactModel> getContacts() {
+        return contacts;
     }
 
-    public void setAddresses(Set<AddressModel> addresses) {
-        this.addresses = addresses;
+    public void setContacts(Set<ContactModel> contacts) {
+        this.contacts = contacts;
     }
 
     public Set<InstructorModel> getInstructors() {
@@ -119,6 +112,14 @@ public class SchoolModel extends AbstractAuditingModel {
         this.languages = languages;
     }
 
+    public Set<StudyTypeModel> getStudyTypes() {
+        return studyTypes;
+    }
+
+    public void setStudyTypes(Set<StudyTypeModel> studyTypes) {
+        this.studyTypes = studyTypes;
+    }
+
     public void addLanguage(LanguageModel language) {
         if (language != null) {
             if (languages == null)
@@ -129,4 +130,6 @@ public class SchoolModel extends AbstractAuditingModel {
             language.addSchool(this);
         }
     }
+
+
 }

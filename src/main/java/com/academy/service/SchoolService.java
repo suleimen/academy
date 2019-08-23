@@ -1,14 +1,12 @@
 package com.academy.service;
 
-import com.academy.dto.AddressDTO;
+import com.academy.dto.ContactDTO;
 import com.academy.dto.SchoolDTO;
-import com.academy.model.AddressModel;
+import com.academy.model.ContactModel;
 import com.academy.model.LanguageModel;
 import com.academy.model.SchoolModel;
-import com.academy.repository.AddressRepository;
-import com.academy.repository.CityRepository;
-import com.academy.repository.LanguageRepository;
-import com.academy.repository.SchoolRepository;
+import com.academy.model.StudyTypeModel;
+import com.academy.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +24,13 @@ public class SchoolService {
     private CityRepository cityRepository;
 
     @Autowired
-    private AddressRepository addressRepository;
+    private ContactRepository contactRepository;
 
     @Autowired
     private LanguageRepository languageRepository;
+
+    @Autowired
+    private StudyTypeRepository studyTypeRepository;
 
     public List<SchoolModel> getAllSchools(){
         return schoolRepository.findAll();
@@ -41,33 +42,35 @@ public class SchoolService {
 
     public void addSchool(SchoolDTO schoolDto){
         SchoolModel school = saveSchool(schoolDto);
-        saveAddresses(school, schoolDto.getAddresses());
+        saveContacts(school, schoolDto.getContacts());
     }
 
-    private void saveAddresses(SchoolModel school, Set<AddressDTO> addresses) {
-        for (AddressDTO address: addresses){
-            AddressModel addressModel = new AddressModel();
-            addressModel.setCity(cityRepository.findByName(address.getCity()));
-            addressModel.setStreetName(address.getStreetName());
-            addressModel.setStreetNumber(address.getStreetNumber());
-            addressModel.setUnit(address.getUnit());
-            addressModel.setLatitude(address.getLatitude());
-            addressModel.setLongitude(address.getLongitude());
-            addressModel.setSchool(school);
-            addressRepository.save(addressModel);
+    private void saveContacts(SchoolModel school, Set<ContactDTO> contacts) {
+        for (ContactDTO contact: contacts){
+            ContactModel contactModel = new ContactModel();
+            contactModel.setCity(cityRepository.findByName(contact.getCity()));
+            contactModel.setAddress(contact.getAddress());
+            contactModel.setLatitude(contact.getLatitude());
+            contactModel.setLongitude(contact.getLongitude());
+            contactModel.setPhoneNumbers(contact.getPhoneNumbers());
+            contactModel.setMetro(contact.getMetro());
+            contactModel.setSchool(school);
+            contactRepository.save(contactModel);
         }
     }
 
     private SchoolModel saveSchool(SchoolDTO school){
         Set<LanguageModel> langs = new HashSet<>();
+        Set<StudyTypeModel> studyTypes = new HashSet<>();
         SchoolModel schoolModel = new SchoolModel();
         schoolModel.setRating(school.getRating());
         schoolModel.setDescription(school.getDescription());
         schoolModel.setEmail(school.getEmail());
         schoolModel.setName(school.getName());
-        schoolModel.setPhoneNumbers(school.getPhoneNumbers());
         school.getLanguages().stream().forEach(l->langs.add(languageRepository.findById(l).orElse(null)));
+        school.getStudyTypes().stream().forEach(s->studyTypes.add(studyTypeRepository.findById(s).orElse(null)));
         schoolModel.setLanguages(langs);
+        schoolModel.setStudyTypes(studyTypes);
         return schoolRepository.save(schoolModel);
     }
 }

@@ -1,6 +1,7 @@
 package com.academy.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "cities")
@@ -10,8 +11,8 @@ public class CityModel extends AbstractModel {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(mappedBy = "city")
-    private AddressModel address;
+    @OneToMany(mappedBy = "city", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<ContactModel> contact;
 
     public String getName() {
         return name;
@@ -21,5 +22,11 @@ public class CityModel extends AbstractModel {
         this.name = name;
     }
 
+    public Set<ContactModel> getContact() {
+        return contact;
+    }
 
+    public void setContact(Set<ContactModel> contact) {
+        this.contact = contact;
+    }
 }

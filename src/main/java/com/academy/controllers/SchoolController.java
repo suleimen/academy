@@ -1,7 +1,6 @@
 package com.academy.controllers;
 
 import com.academy.dto.SchoolDTO;
-import com.academy.model.AddressModel;
 import com.academy.model.SchoolModel;
 import com.academy.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;

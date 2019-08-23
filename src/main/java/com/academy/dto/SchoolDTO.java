@@ -6,10 +6,10 @@ public class SchoolDTO {
     private String name;
     private String description;
     private Double rating;
-    private Set<String> phoneNumbers;
     private String email;
-    private Set<AddressDTO> addresses;
+    private Set<ContactDTO> contacts;
     private Set<Long> languages;
+    private Set<Long> studyTypes;
 
     public String getName() {
         return name;
@@ -43,20 +43,12 @@ public class SchoolDTO {
         this.email = email;
     }
 
-    public Set<String> getPhoneNumbers() {
-        return phoneNumbers;
+    public Set<ContactDTO> getContacts() {
+        return contacts;
     }
 
-    public void setPhoneNumbers(Set<String> phoneNumbers) {
-        this.phoneNumbers = phoneNumbers;
-    }
-
-    public Set<AddressDTO> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(Set<AddressDTO> addresses) {
-        this.addresses = addresses;
+    public void setContacts(Set<ContactDTO> contacts) {
+        this.contacts = contacts;
     }
 
     public Set<Long> getLanguages() {
@@ -65,5 +57,13 @@ public class SchoolDTO {
 
     public void setLanguages(Set<Long> languages) {
         this.languages = languages;
+    }
+
+    public Set<Long> getStudyTypes() {
+        return studyTypes;
+    }
+
+    public void setStudyTypes(Set<Long> studyTypes) {
+        this.studyTypes = studyTypes;
     }
 }
